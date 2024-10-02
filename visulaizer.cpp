@@ -66,7 +66,7 @@ void close() {
 }
 
 void visualize(int x = -1, int y = -1, int z = -1) {
-  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+  SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
   SDL_RenderClear(renderer);
 
   int j = 0;
@@ -75,16 +75,19 @@ void visualize(int x = -1, int y = -1, int z = -1) {
 
     SDL_Rect rect = {i, 0, rectsize, arr[j]};
     if (sorted) {
-      SDL_SetRenderDrawColor(renderer, 100, 180, 100, 0);
+      SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // Bright Green
       SDL_RenderDrawRect(renderer, &rect);
     } else if (j == x || j == z) {
-      SDL_SetRenderDrawColor(renderer, 100, 180, 100, 0);
+      // Change color for elements being compared (x or z) to red.
+      SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Bright Red
       SDL_RenderFillRect(renderer, &rect);
     } else if (j == y) {
-      SDL_SetRenderDrawColor(renderer, 165, 105, 189, 0);
+      // Change the color of the element being swapped (y) to blue.
+      SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // Bright Blue
       SDL_RenderFillRect(renderer, &rect);
     } else {
-      SDL_SetRenderDrawColor(renderer, 170, 183, 184, 0);
+      // Change the default bar color to light gray.
+      SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255); // Light Gray
       SDL_RenderDrawRect(renderer, &rect);
     }
     j++;
